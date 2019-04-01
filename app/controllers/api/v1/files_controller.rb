@@ -9,10 +9,12 @@ module Api
           tags = params[:tag_search_query].split(" ")
           @select_tags = tags.select{|tag| tag[0]=='+'}.map{|tag| tag[1..-1]}
           @deselect_tags = tags.select{|tag| tag[0]=='-'}.map{|tag| tag[1..-1]}
-          @api_files = @api_files.tagged_with(@select_tags, :match_all => false) - @api_files.tagged_with(@deselect_tags, :match_all => false) 
-        else
-          @api_files = @api_files.page params[:page]
+
+          @api_files = @api_files.tagged_with(@select_tags, :match_all => false) - @api_files.tagged_with(@deselect_tags, :match_all => false)
+          
+          @api_files = ApiFile.where(id: @api_files.pluck(:id) ) # This is not good solution,i have tried with joining tables to get query for it for the first time, but no success still  
         end
+        @api_files = @api_files.page params[:page]
         json_response(@api_files)
       end
 

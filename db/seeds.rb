@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+100.times do |i|
+  ApiFile.create(
+    name: 'ApiFile'+i.to_s,
+    tag_list: ["tag1", "tag2", "tag3"].sample(2).join(',') + ",tag4,tag5"
+  )
+end
