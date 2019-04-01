@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2019_04_01_075554) do
   create_table "taggings", id: :serial, force: :cascade do |t|
     t.integer "tag_id"
     t.string "taggable_type"
-    t.integer "taggable_id"
+    t.uuid "taggable_id"
     t.string "tagger_type"
     t.integer "tagger_id"
     t.string "context", limit: 128

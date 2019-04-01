@@ -15,7 +15,7 @@ ActsAsTaggableOnMigration.class_eval do
 
       # You should make sure that the column created is
       # long enough to store the required class names.
-      t.references :taggable, polymorphic: true
+      t.references :taggable, polymorphic: true, type: :uuid
       t.references :tagger, polymorphic: true
 
       # Limit is created to prevent MySQL error on index
