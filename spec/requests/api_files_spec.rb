@@ -21,7 +21,7 @@ RSpec.describe 'File API' do
     it 'returns api files based on submitted tags' do 
       get "/api/v1/files?page=1&tag_search_query=#{search_tags_1}"
       failed = false
-      json.each{|x| failed = true if ["tag1", "tag2"] && x["tag_list"].length != 2}
+      json.each{ |x| failed = true if ApiFile.find(x["id"]).tag_list.include?('tag3')}
       expect(failed).to eq(false)
     end
   end
